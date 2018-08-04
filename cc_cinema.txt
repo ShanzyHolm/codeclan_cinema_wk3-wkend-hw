@@ -8,14 +8,17 @@ Customers
 
 name
 funds
+
 Films
 
 title
 price
+
 Tickets
 
 customer_id
 film_id
+
 Your app should be able to:
 
 Create customers, films and tickets
