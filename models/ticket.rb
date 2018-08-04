@@ -25,6 +25,15 @@ class Ticket
     SqlRunner.run(sql, values)
   end
 
+  def self.find(id)
+    sql = "SELECT * FROM tickets WHERE id = $1"
+    values = [id]
+    results = SqlRunner.run(sql, values)
+    ticket_hash = results.first()
+    ticket = Ticket.new(ticket_hash)
+    return ticket
+  end
+
   def self.all()
     sql = "SELECT * FROM tickets"
     tickets = SqlRunner.run(sql)
