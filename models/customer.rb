@@ -49,6 +49,7 @@ class Customer
 # FROM tables
 # [WHERE conditions]
 # [ORDER BY expression [ ASC | DESC ]];
+# Code explanation found on https://www.techonthenet.com/sql/count.php
 
   def self.find(id)
     sql = "SELECT * FROM customers WHERE id = $1"
