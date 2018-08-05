@@ -45,6 +45,20 @@ class Customer
     return number_of_tickets_bought['number_of_tickets_bought'].to_i
   end
 
+  def funds()
+    sql = "SELECT customers.funds FROM customers WHERE id = $1"
+    values = [id]
+    funds = SqlRunner.run(sql, values).first()
+    return funds['funds'].to_i
+  end
+
+  def buy_ticket()
+    sql =
+    values =
+    SqlRunner.run(sql, values)
+    return
+  end
+
 #   SELECT COUNT(aggregate_expression)
 # FROM tables
 # [WHERE conditions]
