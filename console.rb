@@ -91,6 +91,14 @@ film5 = Film.new(
 )
 film5.save()
 
+film6 = Film.new(
+  {
+    "title" => "Blair Witch Project",
+    "price" => "1"
+  }
+)
+film6.save()
+
 
 ticket1 = Ticket.new({"customer_id" => customer1.id(), "film_id" => film2.id()})
 ticket1.save()
