@@ -31,6 +31,25 @@ class Customer
     SqlRunner.run(sql, values)
   end
 
+  def films()
+    sql = "SELECT films.* FROM films INNER JOIN tickets ON films.id = tickets.film_id WHERE tickets.customer_id = $1"
+    values = [@id]
+    results = SqlRunner.run(sql, values)
+    return results.map { |film| Film.new(film) }
+  end
+
+  def number_of_tickets()
+    sql = "SELECT COUNT(*) AS number_of_tickets_bought FROM tickets WHERE tickets.customer_id = $1"
+    values = [@id]
+    number_of_tickets_bought = SqlRunner.run(sql, values).first()
+    return number_of_tickets_bought['number_of_tickets_bought'].to_i
+  end
+
+#   SELECT COUNT(aggregate_expression)
+# FROM tables
+# [WHERE conditions]
+# [ORDER BY expression [ ASC | DESC ]];
+
   def self.find(id)
     sql = "SELECT * FROM customers WHERE id = $1"
     values = [id]

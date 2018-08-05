@@ -54,7 +54,7 @@ customer6.save()
 film1 = Film.new(
   {
     "title" => "Titanic",
-    "price" => "6"
+    "price" => "5"
   }
 )
 film1.save()
@@ -62,7 +62,7 @@ film1.save()
 film2 = Film.new(
   {
     "title" => "Pixels",
-    "price" => "4"
+    "price" => "3"
   }
 )
 film2.save()
@@ -70,50 +70,66 @@ film2.save()
 film3 = Film.new(
   {
     "title" => "Gone with the Wind",
-    "price" => "2"
+    "price" => "1"
   }
 )
 film3.save()
 
-ticket1 = Ticket.new(
+film4 = Film.new(
   {
-    "customer_id" => customer1.id(),
-    "film_id" => film2.id()
+    "title" => "Matilda",
+    "price" => "2"
   }
 )
+film4.save()
+
+film5 = Film.new(
+  {
+    "title" => "Frozen",
+    "price" => "4"
+  }
+)
+film5.save()
+
+
+ticket1 = Ticket.new({"customer_id" => customer1.id(), "film_id" => film2.id()})
 ticket1.save()
 
-ticket2 = Ticket.new(
-  {
-    "customer_id" => customer5.id(),
-    "film_id" => film3.id()
-  }
-)
+ticket2 = Ticket.new({"customer_id" => customer5.id(), "film_id" => film4.id()})
 ticket2.save()
 
-ticket3 = Ticket.new(
-  {
-    "customer_id" => customer3.id(),
-    "film_id" => film1.id()
-  }
-)
+ticket3 = Ticket.new({"customer_id" => customer3.id(), "film_id" => film1.id()})
 ticket3.save()
 
-ticket4 = Ticket.new(
-  {
-    "customer_id" => customer4.id(),
-    "film_id" => film3.id()
-  }
-)
+ticket4 = Ticket.new({"customer_id" => customer4.id(), "film_id" => film3.id()})
 ticket4.save()
 
-ticket5 = Ticket.new(
-  {
-    "customer_id" => customer2.id(),
-    "film_id" => film1.id()
-  }
-)
+ticket5 = Ticket.new({"customer_id" => customer2.id(), "film_id" => film1.id()})
 ticket5.save()
+
+ticket6 = Ticket.new({"customer_id" => customer5.id(), "film_id" => film5.id()})
+ticket6.save()
+
+ticket7 = Ticket.new({"customer_id" => customer2.id(), "film_id" => film2.id()})
+ticket7.save()
+
+ticket8 = Ticket.new({"customer_id" => customer3.id(), "film_id" => film3.id()})
+ticket8.save()
+
+ticket9 = Ticket.new({"customer_id" => customer4.id(), "film_id" => film1.id()})
+ticket9.save()
+
+ticket10 = Ticket.new({"customer_id" => customer1.id(), "film_id" => film1.id()})
+ticket10.save()
+
+ticket11 = Ticket.new({"customer_id" => customer4.id(), "film_id" => film2.id()})
+ticket11.save()
+
+ticket12 = Ticket.new({"customer_id" => customer4.id(), "film_id" => film5.id()})
+ticket12.save()
+
+ticket13 = Ticket.new({"customer_id" => customer3.id(), "film_id" => film4.id()})
+ticket13.save()
 
 binding.pry
 nil

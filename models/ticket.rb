@@ -31,6 +31,20 @@ class Ticket
     SqlRunner.run(sql, values)
   end
 
+  def films()
+    sql = "SELECT * FROM films WHERE id = $1"
+    values = [@film_id]
+    result = SqlRunner.run(sql, values).first
+    return Film.new(result)
+  end
+
+  def customers()
+    sql = "SELECT * FROM customers WHERE id = $1"
+    values = [@customer_id]
+    result = SqlRunner.run(sql, values).first
+    return Customer.new(result)
+  end
+
   def self.find(id)
     sql = "SELECT * FROM tickets WHERE id = $1"
     values = [id]
