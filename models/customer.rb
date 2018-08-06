@@ -53,14 +53,26 @@ class Customer
   end
 
   def buy_ticket()
-    sql1 = "SELECT customers.funds FROM customers WHERE id = $1"
-    values1 = [id]
-    funds = SqlRunner.run(sql1, values1).first()
-    sql2 = "SELECT films.price WHERE films INNER JOIN tickets ON films.id = tickets.film_id WHERE tickets.film_id = $2"
-    values = [@id]
-    ticket_price = SqlRunner.run(sql2).first()
-    return funds['funds'].to_i - ticket_price['price'].to_i
+    sql = "SELECT customers.funds FROM customers WHERE id = $1; SELECT films.price WHERE films INNER JOIN tickets ON films.id = tickets.film_id WHERE tickets.film_id = $2; SUM(customers.funds) - films.price) AS updated_funds"
+    values = [id, @films.price]
+    updated_funds = SqlRunner.run(sql, values).first()
+    return updated_funds["updated_funds"].to_i
   end
+
+
+
+  # def buy_ticket()
+  #   sql1 = "SELECT customers.funds FROM customers WHERE id = $1"
+  #   values1 = [id]
+  #   funds = SqlRunner.run(sql1, values1).first()
+  #   sql2 = "SELECT films.price WHERE films INNER JOIN tickets ON films.id = tickets.film_id WHERE tickets.film_id = $2"
+  #   values = [@id]
+  #   ticket_price = SqlRunner.run(sql2).first()
+  #   return funds['funds'].to_i - ticket_price['price'].to_i
+  # end
+
+  # (SUM(master_table.QTY) - stock_bal.BAL_QTY) AS NEW_BAL
+  # FROM STACKOVERFLOW
 
 #   SELECT COUNT(aggregate_expression)
 # FROM tables
