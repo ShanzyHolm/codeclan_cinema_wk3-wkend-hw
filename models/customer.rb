@@ -53,11 +53,15 @@ class Customer
   end
 
   def buy_ticket()
-    sql = "SELECT SUM(customers.funds WHERE customer_id = $1) - films.price FROM tickets WHERE tickets.film_id = $2) AS updated_funds"
-    values = [id, @id]
+    sql = "SELECT SUM(customers.funds WHERE customer_id = $1) - SELECT SUM(films.price FROM tickets WHERE tickets.film_id = $2) AS updated_funds"
+    values = [@customer_id, @film_id]
     updated_funds = SqlRunner.run(sql, values).first()
     return updated_funds["updated_funds"].to_i
   end
+
+  (SELECT SUM(A) FROM X) -
+         (SELECT SUM(A) FROM Y)
+         AS MyValue
 
   # def buy_ticket()
   #   sql1 = "SELECT customers.funds FROM customers WHERE id = $1"
